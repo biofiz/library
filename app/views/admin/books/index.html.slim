@@ -1,4 +1,31 @@
-h1 Books
-ul
-  - @books.each do |book|
-      li = book.name
+
+  div.container
+    h1 Библиотека
+  hr
+
+  = flash_messages
+
+  div.container
+    = link_to 'Добавить книгу', new_admin_book_path, class: 'btn btn-primary'
+
+  div.container
+    table.table.table-bordered.table-striped
+      thead
+        tr
+          th Название
+          th{width='20%'} Автор
+          th{width='10%'} Год
+          th{width='10%'} Действия
+      tbody
+        -@books.each do |item|
+          tr
+            td = item.name
+            td = item.author
+            td = item.year
+            td.links
+              = link_to '', admin_book_path(item), class: 'glyphicon glyphicon-eye-open icon-link'
+              = link_to '', edit_admin_book_path(item), class: 'glyphicon glyphicon-pencil icon-link'
+              = link_to '', admin_book_path(item), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'glyphicon glyphicon-remove icon-link'
+
+    div.col-md-offset-4
+      = paginate @books, :theme => 'twitter-bootstrap-3'

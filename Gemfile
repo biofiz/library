@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-kaminari-views'
+gem 'kaminari'
+gem 'simple_form'
 gem 'slim'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'

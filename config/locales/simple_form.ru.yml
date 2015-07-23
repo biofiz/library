@@ -1,0 +1,53 @@
+ru:
+  simple_form:
+    "yes": 'Да'
+    "no": 'Нет'
+    required:
+      text: 'Обязательное поле'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "Пожалуйста, обратите внимание на ошибки ниже:"
+    #Users
+    labels:
+      defaults:
+        username: 'Имя пользователя'
+        password: 'Пароль'
+        new:
+          username: 'Choose a user name'
+    hints:
+      defaults:
+        username: 'User name to sign in.'
+        password: 'No special characters, please.'
+    placeholders:
+      defaults:
+        username: 'Your username'
+        password: '****'
+    #Books
+    labels:
+      defaults:
+        name: "Название книги:"
+        author: "Автор:"
+        publisher: "Издательство:"
+        year: "Год издания:"
+        language: "Язык:"
+        extension: "Формат:"
+        size: "Размер:"
+        pages: "Количество страниц:"
+    hints:
+      defaults:
+#        name: 'Название книги'
+    placeholders:
+      defaults:
+        name: 'Обязательно для заполнения'
+        author: 'Обязательно для заполнения'
+        language: 'Обязательно для заполнения'
+        extension: 'Обязательно для заполнения'
+        size: 'Обязательно для заполнения'
+  helpers:
+    submit:
+      book:
+        create: "Добавить книгу"
+        update: "Сохранить изменения"
