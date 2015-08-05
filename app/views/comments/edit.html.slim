@@ -1,0 +1,8 @@
+-if user_signed_in?
+  | Редактирование комментария:
+  hr
+  = simple_form_for(@comment, html: {class: 'form-horizontal', role: 'form'}, wrapper: :horizontal_form) do |f|
+    = f.input :content, label: "Ваш комментарий"
+    = f.input :book_id, as: :hidden, input_html: { value: @comment.book.id }
+    = f.button :submit, "Сохранить"
+  hr

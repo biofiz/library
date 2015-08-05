@@ -1,4 +1,7 @@
-class Admin::BooksController < Admin::ApplicationController
+class BooksController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
+
+
   before_filter :set_book, only: [:edit, :update, :destroy]
 
   def index
@@ -14,10 +17,10 @@ class Admin::BooksController < Admin::ApplicationController
   end
 
   def create
-    @book = Book.new(books_params)
+    @book = current_user.books.build(books_params)
     if @book.save
       flash[:success] = 'Книга успешно создана.'
-      redirect_to admin_books_path
+      redirect_to books_path
     else
       render 'new'
     end
@@ -29,7 +32,7 @@ class Admin::BooksController < Admin::ApplicationController
   def update
     if @book.update_attributes(books_params)
       flash[:success] = 'Книга успешно обновлена.'
-      redirect_to admin_books_path
+      redirect_to books_path
     else
       flash[:error] = 'Произошла ошибка.'
       render 'edit'
@@ -39,7 +42,7 @@ class Admin::BooksController < Admin::ApplicationController
   def destroy
     @book.destroy
     flash[:success] = 'Книга успешно удалена.'
-    redirect_to admin_books_path
+    redirect_to books_path
   end
 
   private
@@ -51,4 +54,5 @@ class Admin::BooksController < Admin::ApplicationController
   def books_params
     params.require(:book).permit(:name, :author, :publisher, :year, :language, :extension, :size, :pages)
   end
+
 end

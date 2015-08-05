@@ -1,0 +1,26 @@
+div.container
+  h1 Пользователи библиотеки
+  hr
+
+  = flash_messages
+
+
+  div.container
+    table.table.table-bordered.table-striped
+      thead
+        tr
+          th Пользователь (email)
+          th{width='20%'} Зарегистирован
+          th{width='20%'} Последнее посещение
+          th{width='10%'} Действия
+      tbody
+        -@users.each do |item|
+          tr
+            td = item.email
+            td = item.created_at
+            td = item.last_sign_in_at
+            td.links
+              = link_to '', admin_user_path(item), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'glyphicon glyphicon-remove icon-link'
+
+    div.col-md-offset-4
+      = paginate @users, :theme => 'twitter-bootstrap-3'

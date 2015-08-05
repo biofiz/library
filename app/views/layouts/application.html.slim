@@ -1,10 +1,22 @@
 doctype html
 html
   head
-    title Library
+    title NataFriends. Сообщество книголюбов
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-
+    /![if lt IE 9]
+        | <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"
+        | </script
   body
-    = yield
+    = render 'layouts/header'
+
+    div.container-fluid
+      div.col-md-3.jumbotron
+        = flash_messages
+        = render 'layouts/sidebar'
+      div.col-md-9
+        = yield
+
+    = render 'layouts/footer'
+

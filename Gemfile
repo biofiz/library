@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'cancancan', '~> 1.10'
+gem 'devise'
 gem 'bootstrap-kaminari-views'
 gem 'kaminari'
 gem 'simple_form'
@@ -17,6 +19,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
+  gem 'shoulda-matchers'
+  gem 'rspec-its'
+  gem 'faker'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.0'
   gem 'byebug'
   gem 'pry-rails'
   gem 'web-console', '~> 2.0'

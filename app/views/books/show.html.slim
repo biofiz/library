@@ -1,0 +1,71 @@
+div.jumbotron
+  h2 Подробней о книге
+  p
+    = link_to @book.name, book_path(@book)
+    - if current_user && current_user.id == @book.user_id
+      = link_to '', edit_book_path(@book), class: 'glyphicon glyphicon-pencil icon-link navbar-right'
+  = image_tag(@book.image, :class => "img_preview")
+  p.description
+    strong Название:
+    |  #{@book.name}
+    br
+    strong Автор:
+    |  #{@book.author}
+    br
+    - if @book.publisher?
+      strong Издательство:
+      |  #{@book.publisher}
+      br
+    - if @book.year?
+      strong Год:
+      |  #{@book.year}
+      br
+    - if @book.pages?
+      strong Страниц:
+      |  #{@book.pages}
+      br
+    strong Формат:
+    |  #{@book.extension}
+    br
+    strong Размер:
+    |  #{@book.size}
+    br
+    - if @book.isbn?
+      strong ISBN:
+      |  #{@book.isbn}
+      br
+    - if @book.quality?
+      strong Качество:
+      |  #{@book.quality}
+      br
+    - if @book.series?
+      strong Серия или Выпуск:
+      |  #{@book.series}
+      br
+    strong Язык:
+    |  #{@book.language}
+    br
+  p.description
+    = @book.description
+
+div.jumbotron.download
+  | Скачать книгу:
+  br
+  = link_to 'Скачать', @book.link1, target: "_blank"
+
+div.jumbotron.comments
+  | Комментарии
+  hr
+  div.row
+    -@book.comments.each do |item|
+      div.col-md-3
+        =item.user.email
+        -if current_user == item.user
+          = link_to '', edit_comment_path(item), class: 'glyphicon glyphicon-pencil icon-link navbar-right'
+          = link_to '', comment_path(item), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'glyphicon glyphicon-remove icon-link'
+      div.col-md-9
+        =item.content
+        hr
+  hr
+
+  =render "comment", book: @book

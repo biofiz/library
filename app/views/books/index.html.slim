@@ -1,0 +1,53 @@
+-@books.each do |item|
+  div.jumbotron
+    p
+      = link_to item.name, book_path(item)
+      - if current_user && current_user.id == item.user_id
+        = link_to '', edit_book_path(item), class: 'glyphicon glyphicon-pencil icon-link navbar-right'
+    = image_tag(item.image, :class => "img_preview")
+    p.description
+      strong Название:
+      |  #{item.name}
+      br
+      strong Автор:
+      |  #{item.author}
+      br
+      - if item.publisher?
+        strong Издательство:
+        |  #{item.publisher}
+        br
+      - if item.year?
+        strong Год:
+        |  #{item.year}
+        br
+      - if item.pages?
+        strong Страниц:
+        |  #{item.pages}
+        br
+      strong Формат:
+      |  #{item.extension}
+      br
+      strong Размер:
+      |  #{item.size}
+      br
+      - if item.isbn?
+        strong ISBN:
+        |  #{item.isbn}
+        br
+      - if item.quality?
+        strong Качество:
+        |  #{item.quality}
+        br
+      - if item.series?
+        strong Серия или Выпуск:
+        |  #{item.series}
+        br
+      strong Язык:
+      |  #{item.language}
+      br
+    p.description
+      = truncate(item.description, length: 500, separator: ' ', omission: '... ')
+        = link_to "Читать далее", book_path(item)
+
+div.col-md-offset-4
+  = paginate @books, :theme => 'twitter-bootstrap-3'

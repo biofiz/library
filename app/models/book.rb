@@ -4,4 +4,6 @@ class Book < ActiveRecord::Base
   validates :language,  presence: true
   validates :extension,  presence: true
   validates :size,  presence: true
+  belongs_to :user
+  has_many :comments
 end

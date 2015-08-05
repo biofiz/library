@@ -1,0 +1,5 @@
+-if user_signed_in?
+  = simple_form_for(Comment.new, html: {class: 'form-horizontal', role: 'form'}, wrapper: :horizontal_form) do |f|
+    = f.input :content, label: "Ваш комментарий"
+    = f.input :book_id, as: :hidden, input_html: { value: book.id }
+    = f.button :submit, "Добавить"
