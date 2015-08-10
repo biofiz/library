@@ -2,7 +2,7 @@ div.jumbotron
   h2 Подробней о книге
   p
     = link_to @book.name, book_path(@book)
-    - if current_user && current_user.id == @book.user_id
+    - if can? :update, @book
       = link_to '', edit_book_path(@book), class: 'glyphicon glyphicon-pencil icon-link navbar-right'
   = image_tag(@book.image, :class => "img_preview")
   p.description
@@ -60,7 +60,7 @@ div.jumbotron.comments
     -@book.comments.each do |item|
       div.col-md-3
         =item.user.email
-        -if current_user == item.user
+        -if can? :update, item
           = link_to '', edit_comment_path(item), class: 'glyphicon glyphicon-pencil icon-link navbar-right'
           = link_to '', comment_path(item), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'glyphicon glyphicon-remove icon-link'
       div.col-md-9

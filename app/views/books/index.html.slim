@@ -2,7 +2,7 @@
   div.jumbotron
     p
       = link_to item.name, book_path(item)
-      - if current_user && current_user.id == item.user_id
+      - if can? :update, item
         = link_to '', edit_book_path(item), class: 'glyphicon glyphicon-pencil icon-link navbar-right'
     = image_tag(item.image, :class => "img_preview")
     p.description

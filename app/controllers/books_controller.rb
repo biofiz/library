@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
-
+  load_and_authorize_resource
 
   before_filter :set_book, only: [:edit, :update, :destroy]
 
@@ -17,7 +17,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.books.build(books_params)
+    @book = current_user.books.build(book_params)
     if @book.save
       flash[:success] = 'Книга успешно создана.'
       redirect_to books_path
@@ -30,7 +30,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update_attributes(books_params)
+    if @book.update_attributes(book_params)
       flash[:success] = 'Книга успешно обновлена.'
       redirect_to books_path
     else
@@ -51,8 +51,8 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  def books_params
-    params.require(:book).permit(:name, :author, :publisher, :year, :language, :extension, :size, :pages)
+  def book_params
+    params.require(:book).permit(:name, :author, :publisher, :year, :language, :extension, :size, :pages, :user_id)
   end
 
 end

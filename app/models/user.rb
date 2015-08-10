@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :books, dependent: :destroy
   has_many :comments, dependent: :destroy
-  enum role: [ :demo, :user, :native, :librarian, :admin ]
+  enum role: [ :demo, :usual, :native, :librarian, :admin ]
 
 end

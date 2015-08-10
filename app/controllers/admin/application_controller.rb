@@ -5,9 +5,10 @@ class Admin::ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
   load_and_authorize_resource
-  # before_action :verify_admin
-  #
-  # def verify_admin
-  #   redirect_to root_url unless current_user.admin?
-  # end
+
+  before_action :verify_admin
+
+  def verify_admin
+    redirect_to root_url unless current_user.admin?
+  end
 end

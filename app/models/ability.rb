@@ -2,57 +2,27 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
+    user ||= User.new # guest user (not logged in)
+    can :manage, :all if user.admin?
 
-      user ||= User.new # guest user (not logged in)
-      # can :manage, :all if user.admin?
-      # can [:edit, :update], Book if user.librarian?
-      # can :manage, Book, user_id: user.id if user.native?
-      # if user.user?
-      #   can :manage, Book, user_id: user.id
-      #   can :manage, Comment, user_id: user.id
-      # end
-      # if user.demo?
-      #   can :manage, Comment, user_id: user.id
-      # end
-      # can :read, :all
+    # Don't forget to add ability for update and edit only for usual, demo, native
+    can [:edit, :update], Book if user.librarian?
+    can [:edit, :update], Comment if user.librarian?
 
-      if user.admin?
-        can :manage, :all
-      else
-        can :read, Comment, Book
-        if user.user?
-          can :create, Comment, Book
-          can :update, Comment do |comment|
-            comment.try(:user) == user || user.user?
-          end
-          can :update, Book do |book|
-            comment.try(:user) == user || user.user?
-          end
-        end
-        if user.librarian?
-          can :create, Book
-          can :update, Book
-        end
-      end
+    if user.native?
+      can [:manage], [Book, Comment], user_id: user.id
+    end
+
+    if user.usual?
+      # Don't forget to add ability for update and delete only for pending books
+      can [:manage], [Book, Comment], user_id: user.id
+    end
+
+    if user.demo?
+      can :manage, Comment, user_id: user.id
+    end
+    can :read, [Book, Comment]
 
 
-    # The first argument to `can` is the action you are giving the user
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on.
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details:
-    # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end
 end
