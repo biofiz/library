@@ -28,19 +28,31 @@ ru:
     #Books
     labels:
       defaults:
-        name: "Название книги:"
-        author: "Автор:"
-        publisher: "Издательство:"
-        year: "Год издания:"
-        language: "Язык:"
-        extension: "Формат:"
-        size: "Размер:"
-        pages: "Количество страниц:"
+        image:        "Ссылка на обложку"
+        name:         "Название книги:"
+        author:       "Автор:"
+        publisher:    "Издательство:"
+        year:         "Год издания:"
+        pages:        "Количество страниц:"
+        extension:    "Формат:"
+        size:         "Размер:"
+        isbn:         "ISBN"
+        quality:      "Качество"
+        series:       "Серия или выпуск"
+        language:     "Язык:"
+        link1:        "URL ссылки 1"
+        link2:        "URL ссылки 2"
+        link3:        "URL ссылки 3"
+        link4:        "URL ссылки 4"
+        link5:        "URL ссылки 5"
+        description:  "Описание"
+
     hints:
       defaults:
 #        name: 'Название книги'
     placeholders:
       defaults:
+        image: "Желательно на radikal.ru, уменьшить до 200 px"
         name: 'Обязательно для заполнения'
         author: 'Обязательно для заполнения'
         language: 'Обязательно для заполнения'

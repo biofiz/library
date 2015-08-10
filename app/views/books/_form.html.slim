@@ -1,12 +1,23 @@
-div.container.col-md-6.col-md-offset-3
+div.container.col-md-12
   = simple_form_for([@book], html: { class: 'form-horizontal', role: 'form'}, wrapper: :horizontal_form) do |f|
+    = f.input   :image
     = f.input   :name
     = f.input   :author
     = f.input   :publisher
     = f.input   :year
-    = f.input   :language
+    = f.input   :pages
     = f.input   :extension
     = f.input   :size
-    = f.input   :pages
+    = f.input   :isbn
+    = f.input   :quality
+    = f.input   :series
+    = f.input   :language
+    = f.input   :description
+    = f.input   :link1
+    = f.input   :link2
+    = f.input   :link3
+    = f.input   :link4
+    = f.input   :link5
+
     = f.button  :submit
     = link_to "Отмена", :back, class: 'btn btn-default'

@@ -4,9 +4,8 @@ class Admin::ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authenticate_user!
-  load_and_authorize_resource
-
   before_action :verify_admin
+  load_and_authorize_resource
 
   def verify_admin
     redirect_to root_url unless current_user.admin?

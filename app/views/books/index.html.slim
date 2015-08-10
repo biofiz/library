@@ -45,7 +45,7 @@
       strong Язык:
       |  #{item.language}
       br
-    p.description
+    p.description.new-line
       = truncate(item.description, length: 500, separator: ' ', omission: '... ')
         = link_to "Читать далее", book_path(item)
 
