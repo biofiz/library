@@ -6,8 +6,8 @@ class Ability
     can :manage, :all if user.admin?
 
     # Don't forget to add ability for update and edit only for usual, demo, native
-    can [:edit, :update], Book if user.librarian?
-    can [:edit, :update], Comment if user.librarian?
+    can :manage, Book if user.librarian?
+    can :manage, Comment if user.librarian?
 
     if user.native?
       can [:manage], [Book, Comment], user_id: user.id
