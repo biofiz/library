@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   before_filter :set_book, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.all.order(created_at: :desc).page(params[:page]).per(10)
+    @books = Book.where(status: [0, 1, 2]).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

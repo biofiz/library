@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(version: 20150810153937) do
     t.string   "name"
     t.string   "author"
     t.string   "publisher"
-    t.text     "year"
+    t.string   "year"
     t.string   "language"
     t.string   "extension"
     t.string   "size"
-    t.text     "pages"
+    t.string   "pages"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "user_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150810153937) do
     t.integer  "status",      default: 0, null: false
   end
 
+  add_index "books", ["status", "created_at"], name: "index_books_on_status_and_created_at", using: :btree
   add_index "books", ["user_id", "created_at"], name: "index_books_on_user_id_and_created_at", using: :btree
 
   create_table "comments", force: :cascade do |t|

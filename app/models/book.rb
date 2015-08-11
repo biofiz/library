@@ -6,5 +6,5 @@ class Book < ActiveRecord::Base
   validates :size,  presence: true
   belongs_to :user
   has_many :comments
-  enum status: [ :new, :active, :deleted ]
+  enum status: [ :new_book, :active_book, :deleted_book ]
 end
