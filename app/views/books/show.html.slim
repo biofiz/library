@@ -52,6 +52,18 @@ div.jumbotron.download
   | Скачать книгу:
   br
   = link_to 'Скачать', @book.link1, target: "_blank"
+  br
+  - if @book.link2?
+  = link_to 'Скачать', @book.link2, target: "_blank"
+  br
+  - if @book.link3?
+  = link_to 'Скачать', @book.link3, target: "_blank"
+  br
+  - if @book.link4?
+  = link_to 'Скачать', @book.link4, target: "_blank"
+  br
+  - if @book.link5?
+  = link_to 'Скачать', @book.link5, target: "_blank"
 
 div.jumbotron.comments
   | Комментарии
