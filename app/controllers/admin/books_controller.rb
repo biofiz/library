@@ -24,6 +24,7 @@ class Admin::BooksController < Admin::ApplicationController
   end
 
   def edit
+    render 'books/edit'
   end
 
   def update

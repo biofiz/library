@@ -1,2 +1,44 @@
 h2 Подробней о книге
-= @book.name
+= image_tag(@book.image, :class => "img_preview")
+p.description
+  strong Название:
+  |  #{@book.name}
+  br
+  strong Автор:
+  |  #{@book.author}
+  br
+  - if @book.publisher?
+    strong Издательство:
+    |  #{@book.publisher}
+    br
+  - if @book.year?
+    strong Год:
+    |  #{@book.year}
+    br
+  - if @book.pages?
+    strong Страниц:
+    |  #{@book.pages}
+    br
+  strong Формат:
+  |  #{@book.extension}
+  br
+  strong Размер:
+  |  #{@book.size}
+  br
+  - if @book.isbn?
+    strong ISBN:
+    |  #{@book.isbn}
+    br
+  - if @book.quality?
+    strong Качество:
+    |  #{@book.quality}
+    br
+  - if @book.series?
+    strong Серия или Выпуск:
+    |  #{@book.series}
+    br
+  strong Язык:
+  |  #{@book.language}
+  br
+p.description
+  = @book.description
